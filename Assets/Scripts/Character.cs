@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 
-public class Character : MonoBehaviour {
+public class Character : MonoBehaviour, IShootable {
     private static Character instance;
     public static Character Instance => instance;
 
@@ -59,7 +59,6 @@ public class Character : MonoBehaviour {
 	private void HandleInteract() {
 		List<Collider2D> colliders = new ();
 		interactTrigger.Overlap(colliders);
-
 		foreach (Collider2D collider in colliders) {
 			if (collider.TryGetComponent(out IInteractable interactable)) {
 				interactable.StartInteract();
@@ -92,11 +91,11 @@ public class Character : MonoBehaviour {
 
 	private void HandleDebug() {
 		if (Input.GetKeyDown(KeyCode.Alpha1)) {
-			GetBullet();
+			ObtainBullet();
 		}
 	}
 
-	public void GetBullet() {
+	public void ObtainBullet() {
 		bulletCount++;
 	}
 
@@ -104,6 +103,15 @@ public class Character : MonoBehaviour {
 		bulletCount--;
 		GameObject bulletObject = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 		Bullet bullet = bulletObject.GetComponent<Bullet>();
-		bullet.Initialize(facingVector, bulletSpeed);
+		bullet.Initialize(facingVector, bulletSpeed, this);
+	}
+
+	public void GetShot() {
+		health--;
+
+		if (health <= 0) {
+			Debug.Log("lose");
+			// lose game;
+		}
 	}
 }

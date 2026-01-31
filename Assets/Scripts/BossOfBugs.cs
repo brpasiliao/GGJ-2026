@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class BossOfBugs : MonoBehaviour {
+public class BossOfBugs : MonoBehaviour, IShootable {
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed;
 
@@ -30,6 +30,15 @@ public class BossOfBugs : MonoBehaviour {
 		};
 		currentPattern = null;
 		patternRun = null;
+	}
+
+	public void GetShot() {
+		health--;
+
+		if (health <= 0) {
+			Debug.Log("boss defeated");
+			// defeat boss
+		}
 	}
 
 	private void Update() {
@@ -69,7 +78,7 @@ public class BossOfBugs : MonoBehaviour {
 
 				GameObject bulletObject = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 				Bullet bullet = bulletObject.GetComponent<Bullet>();
-				bullet.Initialize(direction, bulletSpeed);
+				bullet.Initialize(direction, bulletSpeed, this);
 			}
 			yield return new WaitForSeconds(shotgunDelay);
 		}
@@ -85,7 +94,7 @@ public class BossOfBugs : MonoBehaviour {
 
 				GameObject bulletObject = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 				Bullet bullet = bulletObject.GetComponent<Bullet>();
-				bullet.Initialize(direction, bulletSpeed);
+				bullet.Initialize(direction, bulletSpeed, this);
 
 				yield return new WaitForSeconds(spiralDelay);
 			}
