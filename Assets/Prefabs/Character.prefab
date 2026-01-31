@@ -49,7 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactTrigger: {fileID: 5170300279214030557}
   speed: 6
-  ammoPrefab: {fileID: 5509739230209880781, guid: 8e8c78766e9124387b3d9dcbd6f2255a, type: 3}
+  bulletPrefab: {fileID: 0}
+  bulletSpeed: 10
 --- !u!58 &5170300279214030557
 CircleCollider2D:
   m_ObjectHideFlags: 0

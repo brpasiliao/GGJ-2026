@@ -1,16 +1,17 @@
 using UnityEngine;
 
-public class Ammo : MonoBehaviour {
+public class Bullet : MonoBehaviour {
 
-	[SerializeField] float maxDistance;
-	[SerializeField] float speed;
+	[SerializeField] private float maxDistance;
 
 	private Vector3 direction;
+	private float speed;
 	private float distanceTraveled;
 
 
-	public void Initialize(Vector3 direction) {
+	public void Initialize(Vector3 direction, float speed) {
 		this.direction = direction;
+		this.speed = speed;
 		distanceTraveled = 0;
 	}
 

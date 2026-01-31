@@ -13,8 +13,9 @@ public class Character : MonoBehaviour {
     [SerializeField] private float speed;
 	private Vector3 facingVector;
 
-	[SerializeField] private GameObject ammoPrefab;
-	private int ammoCount;
+	[SerializeField] private GameObject bulletPrefab;
+	[SerializeField] private int bulletSpeed;
+	private int bulletCount;
 	private int health;
 
 
@@ -22,7 +23,7 @@ public class Character : MonoBehaviour {
         instance = this;
 		interactableColliders = new();
 		facingVector = Vector3.down;
-		ammoCount = 0;
+		bulletCount = 0;
 		health = 1;
 	}
 
@@ -49,7 +50,7 @@ public class Character : MonoBehaviour {
 			currentVector.x += 1f;
 		}
 
-		Vector3 normalizedVector = Vector3.Normalize(currentVector);
+		Vector3 normalizedVector = currentVector.normalized;
 		Vector3 target = normalizedVector + transform.position;
 		transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
 		facingVector = normalizedVector == Vector3.zero ? facingVector : normalizedVector;
@@ -83,26 +84,26 @@ public class Character : MonoBehaviour {
 
 	private void HandleShooting() {
 		if (Input.GetKeyDown(KeyCode.Space)) {
-			if (ammoCount > 0) {
-				ShootAmmo();
+			if (bulletCount > 0) {
+				ShootBullet();
 			}
 		}
 	}
 
 	private void HandleDebug() {
 		if (Input.GetKeyDown(KeyCode.Alpha1)) {
-			GetAmmo();
+			GetBullet();
 		}
 	}
 
-	public void GetAmmo() {
-		ammoCount++;
+	public void GetBullet() {
+		bulletCount++;
 	}
 
-	public void ShootAmmo() {
-		ammoCount--;
-		GameObject ammoObject = Instantiate(ammoPrefab, transform.position, Quaternion.identity);
-		Ammo ammo = ammoObject.GetComponent<Ammo>();
-		ammo.Initialize(facingVector);
+	public void ShootBullet() {
+		bulletCount--;
+		GameObject bulletObject = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+		Bullet bullet = bulletObject.GetComponent<Bullet>();
+		bullet.Initialize(facingVector, bulletSpeed);
 	}
 }
