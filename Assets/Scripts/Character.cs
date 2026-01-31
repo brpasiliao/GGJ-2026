@@ -66,7 +66,7 @@ public class Character : MonoBehaviour, IShootable {
 					interactableColliders.Add(collider);
 				}
 
-				if (Input.GetKeyDown(KeyCode.E)) {
+				if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Space)) {
 					interactable.Interact();
 				}
 			}
