@@ -13,6 +13,9 @@ public class Character : MonoBehaviour, IShootable {
     [SerializeField] private float speed;
 	private Vector3 facingVector;
 
+	private int level;
+	public int Level => level;
+
 	[SerializeField] private GameObject bulletPrefab;
 	[SerializeField] private int bulletSpeed;
 	private int bulletCount;
@@ -20,11 +23,17 @@ public class Character : MonoBehaviour, IShootable {
 
 
 	private void Awake() {
+		DontDestroyOnLoad(this);
         instance = this;
 		interactableColliders = new();
 		facingVector = Vector3.down;
+		level = 0;
 		bulletCount = 0;
 		health = 1;
+	}
+
+	public void ChangePosition(Vector3 newPosition) {
+		transform.position = newPosition;
 	}
 
 	private void Update() {
@@ -57,6 +66,8 @@ public class Character : MonoBehaviour, IShootable {
 	}
 
 	private void HandleInteract() {
+		interactableColliders.RemoveAll(collider => collider == null);
+
 		List<Collider2D> colliders = new ();
 		interactTrigger.Overlap(colliders);
 		foreach (Collider2D collider in colliders) {
@@ -93,6 +104,9 @@ public class Character : MonoBehaviour, IShootable {
 		if (Input.GetKeyDown(KeyCode.Alpha1)) {
 			ObtainBullet();
 		}
+		if (Input.GetKeyDown(KeyCode.M)) {
+			interactTrigger.enabled = !interactTrigger.enabled;
+		}
 	}
 
 	public void ObtainBullet() {
@@ -106,12 +120,12 @@ public class Character : MonoBehaviour, IShootable {
 		bullet.Initialize(facingVector, bulletSpeed, this);
 	}
 
-	public void GetShot() {
+	public bool GetShot() {
 		health--;
-
 		if (health <= 0) {
 			Debug.Log("lose");
 			// lose game;
 		}
+		return true;
 	}
 }

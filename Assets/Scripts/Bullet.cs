@@ -34,8 +34,9 @@ public class Bullet : MonoBehaviour {
 		trigger.Overlap(colliders);
 		foreach (Collider2D collider in colliders) {
 			if (collider.TryGetComponent(out IShootable shootable) && shootable != owner) {
-				shootable.GetShot();
-				Destroy(gameObject);
+				if (shootable.GetShot()) {
+					Destroy(gameObject);
+				}
 			}
 		}
 	}

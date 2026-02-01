@@ -135,48 +135,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5509739230209880781, guid: 8e8c78766e9124387b3d9dcbd6f2255a, type: 3}
   health: 3
+  invincibleDuration: 10
+  invincibleCooldown: 20
+  startDelay: 5
   patternDelay: 1
-  patterns:
-  - type: 0
-    rounds: 4
-    variations: 0
-    rays: 0
-    angle: 0
-    bulletCount: 30
-    bulletSpeed: 2
-    delay: 0.05
-  - type: 1
-    rounds: 5
-    variations: 3
-    rays: 0
-    angle: 0
-    bulletCount: 45
-    bulletSpeed: 2
-    delay: 0.5
-  - type: 2
-    rounds: 4
-    variations: 6
-    rays: 3
-    angle: 40
-    bulletCount: 36
-    bulletSpeed: 2
-    delay: 1
-  - type: 3
-    rounds: 6
-    variations: 0
-    rays: 0
-    angle: 180
-    bulletCount: 36
-    bulletSpeed: 2
-    delay: 1
-  - type: 4
-    rounds: 0
-    variations: 0
-    rays: 0
-    angle: 0
-    bulletCount: 50
-    bulletSpeed: 2
-    delay: 0.1
   testPatterns:
   - type: 2
     rounds: 3
@@ -186,6 +148,7 @@ MonoBehaviour:
     bulletCount: 36
     bulletSpeed: 2
     delay: 1
+  patterns: []
 --- !u!58 &5372082401188418001
 CircleCollider2D:
   m_ObjectHideFlags: 0

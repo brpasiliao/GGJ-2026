@@ -1,3 +1,3 @@
 public interface IShootable {
-    public void GetShot();
+    public bool GetShot();
 }

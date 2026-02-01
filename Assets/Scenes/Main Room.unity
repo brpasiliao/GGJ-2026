@@ -213,7 +213,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1254647262937003157, guid: 8d809780100dd4c6d9ee64dfb1a3e188, type: 3}
       propertyPath: m_Name
-      value: Person (1)
+      value: Door 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3969591112624548478, guid: 8d809780100dd4c6d9ee64dfb1a3e188, type: 3}
+      propertyPath: fear
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4777060549124792720, guid: 8d809780100dd4c6d9ee64dfb1a3e188, type: 3}
       propertyPath: m_LocalPosition.x
@@ -270,7 +274,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1254647262937003157, guid: 8d809780100dd4c6d9ee64dfb1a3e188, type: 3}
       propertyPath: m_Name
-      value: Person (2)
+      value: Door 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3969591112624548478, guid: 8d809780100dd4c6d9ee64dfb1a3e188, type: 3}
+      propertyPath: fear
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4777060549124792720, guid: 8d809780100dd4c6d9ee64dfb1a3e188, type: 3}
       propertyPath: m_LocalPosition.x
@@ -433,6 +441,132 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1347c27ead5f040faab7de3862632ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstRoomStart:
+    type: 1
+    rounds: 1
+    variations: 1
+    rays: 0
+    angle: 0
+    bulletCount: 20
+    bulletSpeed: 2
+    delay: 0
+  firstRoomPatterns:
+  - type: 1
+    rounds: 5
+    variations: 3
+    rays: 0
+    angle: 0
+    bulletCount: 45
+    bulletSpeed: 2
+    delay: 0.5
+  - type: 4
+    rounds: 0
+    variations: 0
+    rays: 0
+    angle: 0
+    bulletCount: 50
+    bulletSpeed: 2
+    delay: 0.2
+  - type: 2
+    rounds: 3
+    variations: 1
+    rays: 3
+    angle: 40
+    bulletCount: 36
+    bulletSpeed: 2
+    delay: 1
+  secondRoomStart:
+    type: 1
+    rounds: 1
+    variations: 1
+    rays: 0
+    angle: 0
+    bulletCount: 20
+    bulletSpeed: 2
+    delay: 0
+  secondRoomPatterns:
+  - type: 2
+    rounds: 3
+    variations: 1
+    rays: 3
+    angle: 40
+    bulletCount: 36
+    bulletSpeed: 2
+    delay: 1
+  - type: 3
+    rounds: 5
+    variations: 6
+    rays: 0
+    angle: 100
+    bulletCount: 36
+    bulletSpeed: 2
+    delay: 1
+  - type: 1
+    rounds: 5
+    variations: 3
+    rays: 0
+    angle: 0
+    bulletCount: 45
+    bulletSpeed: 2
+    delay: 0.5
+  - type: 4
+    rounds: 0
+    variations: 0
+    rays: 0
+    angle: 0
+    bulletCount: 50
+    bulletSpeed: 2
+    delay: 0.2
+  thirdRoomStart:
+    type: 1
+    rounds: 1
+    variations: 1
+    rays: 0
+    angle: 0
+    bulletCount: 20
+    bulletSpeed: 2
+    delay: 0
+  thirdRoomPatterns:
+  - type: 4
+    rounds: 0
+    variations: 0
+    rays: 0
+    angle: 0
+    bulletCount: 50
+    bulletSpeed: 2
+    delay: 0.2
+  - type: 2
+    rounds: 3
+    variations: 1
+    rays: 3
+    angle: 40
+    bulletCount: 36
+    bulletSpeed: 2
+    delay: 1
+  - type: 0
+    rounds: 3
+    variations: 0
+    rays: 0
+    angle: 0
+    bulletCount: 30
+    bulletSpeed: 2
+    delay: 0.05
+  - type: 1
+    rounds: 5
+    variations: 3
+    rays: 0
+    angle: 0
+    bulletCount: 45
+    bulletSpeed: 2
+    delay: 0.5
+  - type: 3
+    rounds: 5
+    variations: 6
+    rays: 0
+    angle: 100
+    bulletCount: 36
+    bulletSpeed: 2
+    delay: 1
 --- !u!4 &1561374628
 Transform:
   m_ObjectHideFlags: 0
@@ -458,7 +592,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1254647262937003157, guid: 8d809780100dd4c6d9ee64dfb1a3e188, type: 3}
       propertyPath: m_Name
-      value: Person
+      value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 4777060549124792720, guid: 8d809780100dd4c6d9ee64dfb1a3e188, type: 3}
       propertyPath: m_LocalPosition.x
@@ -567,9 +701,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 619394802}
+  - {fileID: 1561374628}
   - {fileID: 1494223063}
   - {fileID: 6211263746267931976}
   - {fileID: 765669949158406092}
   - {fileID: 846733793}
   - {fileID: 1489127722}
-  - {fileID: 1561374628}

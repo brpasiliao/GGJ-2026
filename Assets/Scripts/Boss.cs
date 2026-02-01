@@ -23,7 +23,6 @@ public struct Pattern {
 	public int bulletCount;		// bullets in a ring per round; kind of works like density since ccould be empty in certain spots of the ring
 	public float bulletSpeed;
 	public float delay;			// delay between each round or bullet
-	// angle offset?
 }
 
 
@@ -31,42 +30,67 @@ public class Boss : MonoBehaviour, IShootable {
     [SerializeField] private GameObject bulletPrefab;
 
 	[SerializeField] private int health;
+	[SerializeField] private float invincibleDuration;
+	[SerializeField] private float invincibleCooldown;
+	[SerializeField] private float startDelay;
 	[SerializeField] private float patternDelay;
 
-	[SerializeField] private List<Pattern> patterns;
 	[SerializeField] private List<Pattern> testPatterns;
+	private List<Pattern> patterns;
+	private Pattern startPattern;
 	private Pattern currentPattern;
 	private Coroutine currentPatternRoutine;
 	private Coroutine patternSequence;
+	private bool darkAbility;
+	private bool invincible;
+	private bool defeated;
 
 
-	private void Awake() {
+	public void Initialize(Pattern startPattern, List<Pattern> patterns, bool darkAbility) {
+		this.patterns = patterns;
+		this.startPattern = startPattern;
+		this.darkAbility = darkAbility;
 		currentPatternRoutine = null;
 		patternSequence = null;
+		invincible = false;
+		defeated = false;
+
+		Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
+		patternSequence = StartCoroutine(routine(patterns));
 	}
 
-	public void GetShot() {
-		health--;
+	public bool GetShot() {
+		if (invincible) {
+			return false;
+		}
 
+		health--;
 		if (health <= 0) {
 			Debug.Log("boss defeated");
 			// defeat boss
 		}
+		return true;
 	}
 
 	private void Update() {
-		if (Input.GetKeyDown(KeyCode.Alpha8)) {
-			Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
-			patternSequence = StartCoroutine(routine(testPatterns));
-		}
-		if (Input.GetKeyDown(KeyCode.Alpha9)) {
-			Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
-			patternSequence = StartCoroutine(routine(patterns));
-		}
+		//if (Input.GetKeyDown(KeyCode.Alpha8)) {
+		//	health = 1;
+		//	Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
+		//	patternSequence = StartCoroutine(routine(testPatterns));
+		//}
+		//if (Input.GetKeyDown(KeyCode.Alpha9)) {
+		//	health = 1;
+		//	Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
+		//	patternSequence = StartCoroutine(routine(patterns));
+		//}
 		if (Input.GetKeyDown(KeyCode.Alpha0)) {
 			health = 0;
+		}
 
+		if (!defeated) {
 			if (health <= 0) {
+				defeated = true;
+
 				if (currentPatternRoutine != null) {
 					StopCoroutine(currentPatternRoutine);
 				}
@@ -77,23 +101,41 @@ public class Boss : MonoBehaviour, IShootable {
 		}
 	}
 
+
+
 	private IEnumerator RunPatterns(List<Pattern> patternsList) {
 		if (patternsList.Count == 0) {
 			yield break;
 		}
 
+		yield return new WaitForSeconds(startDelay);
+		if (darkAbility) StartCoroutine(DarkAbility());
+		yield return StartCoroutine(RunPattern(startPattern));
+
 		while (true) {
 			foreach (Pattern pattern in patternsList) {
-				yield return new WaitForSeconds(patternDelay);
-				currentPattern = pattern;
-				Func<IEnumerator> patternRoutine = GetRoutineFromEnum(pattern.type);
-				currentPatternRoutine = StartCoroutine(patternRoutine());
-				yield return currentPatternRoutine;
+				yield return StartCoroutine(RunPattern(pattern));
 			}
 		}
 	}
 
-    private IEnumerator ShotgunPattern() {
+	private IEnumerator RunPattern(Pattern pattern) {
+		Debug.Log("run pattern " + pattern.type);
+		yield return new WaitForSeconds(patternDelay);
+		currentPattern = pattern;
+		Func<IEnumerator> patternRoutine = GetRoutineFromEnum(pattern.type);
+		currentPatternRoutine = StartCoroutine(patternRoutine());
+		yield return currentPatternRoutine;
+	}
+
+	private IEnumerator DarkAbility() {
+		invincible = false;
+		yield return new WaitForSeconds(invincibleCooldown);
+		invincible = true;
+		yield return new WaitForSeconds(invincibleDuration);
+	}
+
+	private IEnumerator ShotgunPattern() {
 		for (int round = 0; round < currentPattern.rounds; round++) {
 			int variation = round % currentPattern.variations;
 
@@ -101,14 +143,6 @@ public class Boss : MonoBehaviour, IShootable {
 				if (count % currentPattern.variations != variation) {
 					continue;
 				}
-				//bool skip = false;
-				//for (int variation = 0; variation < currentPattern.variations; variation++) {
-				//	if (round % currentPattern.rounds != variation && count % currentPattern.rounds != variation) {
-				//		skip = true;
-				//		break;
-				//	}
-				//}
-				//if (skip) { continue; }
 
 				float angleDegrees = 360f / currentPattern.bulletCount * count;
 				float angleRadians = angleDegrees * Mathf.Deg2Rad;
