@@ -27,6 +27,7 @@ public struct Pattern {
 
 
 public class Boss : MonoBehaviour, IShootable {
+    [SerializeField] private SpriteRenderer graphics;
     [SerializeField] private GameObject bulletPrefab;
 
 	[SerializeField] private int health;
@@ -41,6 +42,7 @@ public class Boss : MonoBehaviour, IShootable {
 	private Pattern currentPattern;
 	private Coroutine currentPatternRoutine;
 	private Coroutine patternSequence;
+	private Coroutine darkAbilityRoutine;
 	private bool darkAbility;
 	private bool invincible;
 	private bool defeated;
@@ -52,11 +54,32 @@ public class Boss : MonoBehaviour, IShootable {
 		this.darkAbility = darkAbility;
 		currentPatternRoutine = null;
 		patternSequence = null;
+		darkAbilityRoutine = null;
 		invincible = false;
 		defeated = false;
 
 		Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
 		patternSequence = StartCoroutine(routine(patterns));
+	}
+
+	private void CheckDefeat() {
+		if (health <= 0) {
+			Debug.Log("boss defeated");
+			defeated = true;
+
+			if (currentPatternRoutine != null) {
+				StopCoroutine(currentPatternRoutine);
+			}
+			if (patternSequence != null) {
+				StopCoroutine(patternSequence);
+			}
+			if (darkAbilityRoutine != null) {
+				StopCoroutine(darkAbilityRoutine);
+			}
+
+			RoomManager.Instance.StopBug();
+			graphics.gameObject.SetActive(false);
+		}
 	}
 
 	public bool GetShot() {
@@ -65,43 +88,44 @@ public class Boss : MonoBehaviour, IShootable {
 		}
 
 		health--;
-		if (health <= 0) {
-			Debug.Log("boss defeated");
-			// defeat boss
-		}
+		CheckDefeat();
 		return true;
 	}
 
 	private void Update() {
-		if (Input.GetKeyDown(KeyCode.Alpha8)) {
+		if (Input.GetKeyDown(KeyCode.Alpha7)) {
 			health = 1;
 			Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
 			patternSequence = StartCoroutine(routine(testPatterns));
 		}
-		if (Input.GetKeyDown(KeyCode.Alpha9)) {
+		if (Input.GetKeyDown(KeyCode.Alpha8)) {
 			health = 1;
 			Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
 			patternSequence = StartCoroutine(routine(patterns));
 		}
-		if (Input.GetKeyDown(KeyCode.Alpha0)) {
+		if (Input.GetKeyDown(KeyCode.Alpha9)) {
 			health = 0;
+			CheckDefeat();
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha0)) {
+			GameManager.Instance.LeaveRoom();
 		}
 
 		if (!defeated) {
-			if (health <= 0) {
-				defeated = true;
-
-				if (currentPatternRoutine != null) {
-					StopCoroutine(currentPatternRoutine);
-				}
-				if (patternSequence != null) {
-					StopCoroutine(patternSequence);
-				}
-			}
+			
 		}
 	}
 
-
+	private IEnumerator DarkAbility() {
+		while (true) {
+			invincible = false;
+			graphics.color = Color.white;
+			yield return new WaitForSeconds(invincibleCooldown);
+			invincible = true;
+			graphics.color = Color.black;
+			yield return new WaitForSeconds(invincibleDuration);
+		}
+	}
 
 	private IEnumerator RunPatterns(List<Pattern> patternsList) {
 		if (patternsList.Count == 0) {
@@ -109,7 +133,7 @@ public class Boss : MonoBehaviour, IShootable {
 		}
 
 		yield return new WaitForSeconds(startDelay);
-		if (darkAbility) StartCoroutine(DarkAbility());
+		if (darkAbility) darkAbilityRoutine = StartCoroutine(DarkAbility());
 		yield return StartCoroutine(RunPattern(startPattern));
 
 		while (true) {
@@ -126,13 +150,6 @@ public class Boss : MonoBehaviour, IShootable {
 		Func<IEnumerator> patternRoutine = GetRoutineFromEnum(pattern.type);
 		currentPatternRoutine = StartCoroutine(patternRoutine());
 		yield return currentPatternRoutine;
-	}
-
-	private IEnumerator DarkAbility() {
-		invincible = false;
-		yield return new WaitForSeconds(invincibleCooldown);
-		invincible = true;
-		yield return new WaitForSeconds(invincibleDuration);
 	}
 
 	private IEnumerator ShotgunPattern() {

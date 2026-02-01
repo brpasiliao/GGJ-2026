@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1197cc08fbb49d28d65979b2fd7390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graphics: {fileID: 7433360929619971371}
   bulletPrefab: {fileID: 5509739230209880781, guid: 8e8c78766e9124387b3d9dcbd6f2255a, type: 3}
   health: 15
   invincibleDuration: 10

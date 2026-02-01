@@ -7,6 +7,7 @@ public class Character : MonoBehaviour, IShootable {
     private static Character instance;
     public static Character Instance => instance;
 
+	[SerializeField] private Rigidbody2D characterRigidbody;
 	[SerializeField] private Collider2D bodyCollider;
 	[SerializeField] private Collider2D interactTrigger;
 	private List<Collider2D> interactableColliders;
@@ -19,7 +20,7 @@ public class Character : MonoBehaviour, IShootable {
 	[SerializeField] private Animator weaponAnimator;
 
     [SerializeField] private float speed;
-	private Vector3 facingAngle;
+	private Vector2 directionVector;
 
 	private int level;
 	public int Level => level;
@@ -34,8 +35,7 @@ public class Character : MonoBehaviour, IShootable {
 		DontDestroyOnLoad(this);
         instance = this;
 		interactableColliders = new();
-		facingAngle = Vector3.down;
-		level = 2;
+		level = 0;
 		UpdateBulletCount(0);
 		health = 1;
 	}
@@ -45,35 +45,43 @@ public class Character : MonoBehaviour, IShootable {
 	}
 
 	private void Update() {
-		HandleMovement();
+		HandleMovementInput();
 		HandleInteract();
 		HandleAiming();
 		HandleCollecting();
 		HandleDebug();
 	}
 
-	private void HandleMovement() {
-		Vector3 currentVector = Vector3.zero;
+	private void FixedUpdate() {
+		HandleMovement();
+	}
+
+	private void HandleMovementInput() {
+		directionVector = Vector2.zero;
 
 		if (Input.GetKey(KeyCode.W)) {
-			currentVector.y += 1f;
+			directionVector.y += 1f;
 		}
 		if (Input.GetKey(KeyCode.A)) {
-			currentVector.x -= 1f;
+			directionVector.x -= 1f;
 		}
 		if (Input.GetKey(KeyCode.S)) {
-			currentVector.y -= 1f;
+			directionVector.y -= 1f;
 		}
 		if (Input.GetKey(KeyCode.D)) {
-			currentVector.x += 1f;
+			directionVector.x += 1f;
 		}
 
-		Vector3 normalizedVector = currentVector.normalized;
-		Vector3 target = normalizedVector + transform.position;
-		transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
-		facingAngle = normalizedVector == Vector3.zero ? facingAngle : normalizedVector;
-		characterAnimator.SetInteger("directionX", (int) currentVector.x);
-		characterAnimator.SetInteger("directionY", (int) currentVector.y);
+		//Vector2 normalizedVector = directionVector.normalized;
+		//Vector3 target = normalizedVector + transform.position;
+		//transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
+		characterAnimator.SetInteger("directionX", (int)directionVector.x);
+		characterAnimator.SetInteger("directionY", (int)directionVector.y);
+	}
+
+	private void HandleMovement() {
+		Vector2 step = directionVector.normalized * Time.fixedDeltaTime * speed;
+		characterRigidbody.MovePosition(characterRigidbody.position + step);
 	}
 
 	private void HandleInteract() {
@@ -186,6 +194,12 @@ public class Character : MonoBehaviour, IShootable {
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha2)) {
 			bodyCollider.enabled = !bodyCollider.enabled;
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha3)) {
+			level++;
+			if (level >= 3) {
+				level = 0;
+			}
 		}
 	}
 }

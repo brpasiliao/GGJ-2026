@@ -1,25 +1,34 @@
 fileFormatVersion: 2
-guid: b43f5102ab9a3402a82addfe0158768b
+guid: f01d1b247e4bb4b008cab50a6659f699
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4471030168529348049
-    second: pillow 1_0
+      213: 5929907586768531987
+    second: mask_dark_0
   - first:
-      213: -323961326413500170
-    second: pillow 1_1
+      213: 9198477350480709449
+    second: mask_dark_1
   - first:
-      213: -3652374571391178667
-    second: pillow 1_2
+      213: 1965290547073764868
+    second: mask_dark_2
   - first:
-      213: -687395164003477714
-    second: pillow 1_3
+      213: 1856892511570273977
+    second: mask_dark_3
   - first:
-      213: -8205032216210878318
-    second: pillow 1_4
+      213: 102372189288372898
+    second: mask_dark_4
   - first:
-      213: -1754837188273655511
-    second: pillow 1_5
+      213: -6752446037062944459
+    second: mask_dark_5
+  - first:
+      213: -7065578924737248908
+    second: mask_dark_6
+  - first:
+      213: -8443595584432120115
+    second: mask_dark_7
+  - first:
+      213: 4354939387188794516
+    second: mask_dark_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -128,13 +137,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pillow 1_0
+      name: mask_dark_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 10
-        width: 31
-        height: 29
+        x: 54
+        y: 50
+        width: 161
+        height: 157
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d52f3fef3a4c0e30800000000000000
-      internalID: 4471030168529348049
+      spriteID: 3127b3c38834b4250800000000000000
+      internalID: 5929907586768531987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pillow 1_1
+      name: mask_dark_1
       rect:
         serializedVersion: 2
-        x: 55
-        y: 7
-        width: 34
-        height: 33
+        x: 287
+        y: 54
+        width: 153
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f0b82ad3ee018bf0800000000000000
-      internalID: -323961326413500170
+      spriteID: 94701e52a6e87af70800000000000000
+      internalID: 9198477350480709449
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pillow 1_2
+      name: mask_dark_2
       rect:
         serializedVersion: 2
-        x: 102
-        y: 6
-        width: 36
-        height: 35
+        x: 555
+        y: 65
+        width: 105
+        height: 164
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +196,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5582f8dada8205dc0800000000000000
-      internalID: -3652374571391178667
+      spriteID: 40ec3ca075d164b10800000000000000
+      internalID: 1965290547073764868
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pillow 1_3
+      name: mask_dark_3
       rect:
         serializedVersion: 2
-        x: 147
-        y: 3
-        width: 42
-        height: 42
+        x: 804
+        y: 80
+        width: 132
+        height: 166
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,20 +218,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e2750458db1e576f0800000000000000
-      internalID: -687395164003477714
+      spriteID: 9b6aa3aa6e105c910800000000000000
+      internalID: 1856892511570273977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pillow 1_4
+      name: mask_dark_4
       rect:
         serializedVersion: 2
-        x: 197
-        y: 5
-        width: 41
-        height: 42
+        x: 1065
+        y: 83
+        width: 161
+        height: 162
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,20 +240,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2905d16ebaed12e80800000000000000
-      internalID: -8205032216210878318
+      spriteID: 2aa9969b6f2bb6100800000000000000
+      internalID: 102372189288372898
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pillow 1_5
+      name: mask_dark_5
       rect:
         serializedVersion: 2
-        x: 247
-        y: 7
-        width: 35
-        height: 36
+        x: 1368
+        y: 78
+        width: 136
+        height: 145
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,8 +262,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 921bd42ffd095a7e0800000000000000
-      internalID: -1754837188273655511
+      spriteID: 5397ed3fa1e7a42a0800000000000000
+      internalID: -6752446037062944459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mask_dark_6
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 64
+        width: 110
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 471cc8a276502fd90800000000000000
+      internalID: -7065578924737248908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mask_dark_7
+      rect:
+        serializedVersion: 2
+        x: 1864
+        y: 51
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dceddd25d8252da80800000000000000
+      internalID: -8443595584432120115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mask_dark_8
+      rect:
+        serializedVersion: 2
+        x: 2102
+        y: 83
+        width: 161
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 494deb79c4adf6c30800000000000000
+      internalID: 4354939387188794516
       vertices: []
       indices: 
       edges: []
@@ -273,12 +348,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pillow 1_0: 4471030168529348049
-      pillow 1_1: -323961326413500170
-      pillow 1_2: -3652374571391178667
-      pillow 1_3: -687395164003477714
-      pillow 1_4: -8205032216210878318
-      pillow 1_5: -1754837188273655511
+      mask_dark_0: 5929907586768531987
+      mask_dark_1: 9198477350480709449
+      mask_dark_2: 1965290547073764868
+      mask_dark_3: 1856892511570273977
+      mask_dark_4: 102372189288372898
+      mask_dark_5: -6752446037062944459
+      mask_dark_6: -7065578924737248908
+      mask_dark_7: -8443595584432120115
+      mask_dark_8: 4354939387188794516
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

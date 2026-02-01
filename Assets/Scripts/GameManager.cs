@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour {
 		SceneManager.LoadScene("Boss Room");
 	}
 
+	public void LeaveRoom() {
+		SceneManager.LoadScene("Main Room");
+	}
+
 	public FearType GetFear() {
 		return currentFear;
 	}

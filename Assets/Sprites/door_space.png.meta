@@ -1,25 +1,13 @@
 fileFormatVersion: 2
-guid: b43f5102ab9a3402a82addfe0158768b
+guid: 327aca9bff54f4e1587415ed81714df4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4471030168529348049
-    second: pillow 1_0
+      213: 2685448801676256057
+    second: door_space_0
   - first:
-      213: -323961326413500170
-    second: pillow 1_1
-  - first:
-      213: -3652374571391178667
-    second: pillow 1_2
-  - first:
-      213: -687395164003477714
-    second: pillow 1_3
-  - first:
-      213: -8205032216210878318
-    second: pillow 1_4
-  - first:
-      213: -1754837188273655511
-    second: pillow 1_5
+      213: -1449446539956157002
+    second: door_space_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -128,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pillow 1_0
+      name: door_space_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 10
-        width: 31
-        height: 29
+        x: 4
+        y: 1
+        width: 56
+        height: 94
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d52f3fef3a4c0e30800000000000000
-      internalID: 4471030168529348049
+      spriteID: 933696ef471a44520800000000000000
+      internalID: 2685448801676256057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pillow 1_1
+      name: door_space_1
       rect:
         serializedVersion: 2
-        x: 55
-        y: 7
-        width: 34
-        height: 33
+        x: 66
+        y: 1
+        width: 60
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,96 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f0b82ad3ee018bf0800000000000000
-      internalID: -323961326413500170
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pillow 1_2
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 6
-        width: 36
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5582f8dada8205dc0800000000000000
-      internalID: -3652374571391178667
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pillow 1_3
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 3
-        width: 42
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e2750458db1e576f0800000000000000
-      internalID: -687395164003477714
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pillow 1_4
-      rect:
-        serializedVersion: 2
-        x: 197
-        y: 5
-        width: 41
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2905d16ebaed12e80800000000000000
-      internalID: -8205032216210878318
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pillow 1_5
-      rect:
-        serializedVersion: 2
-        x: 247
-        y: 7
-        width: 35
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 921bd42ffd095a7e0800000000000000
-      internalID: -1754837188273655511
+      spriteID: 6b58ef82d0882ebe0800000000000000
+      internalID: -1449446539956157002
       vertices: []
       indices: 
       edges: []
@@ -273,12 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pillow 1_0: 4471030168529348049
-      pillow 1_1: -323961326413500170
-      pillow 1_2: -3652374571391178667
-      pillow 1_3: -687395164003477714
-      pillow 1_4: -8205032216210878318
-      pillow 1_5: -1754837188273655511
+      door_space_0: 2685448801676256057
+      door_space_1: -1449446539956157002
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

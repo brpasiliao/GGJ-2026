@@ -10,6 +10,9 @@ public enum FearType {
 
 public class RoomManager : MonoBehaviour {
 
+	private static RoomManager instance;
+	public static RoomManager Instance => instance;
+
 	[SerializeField] private GameObject normalRoom;
 	[SerializeField] private GameObject smallerRoom;
 	[SerializeField] private GameObject bug;
@@ -17,6 +20,7 @@ public class RoomManager : MonoBehaviour {
 	[SerializeField] private Boss boss;
 
     public void Awake() {
+		instance = this;
 		FearType type = GameManager.Instance.GetFear();
 		Pattern startPattern = GameManager.Instance.GetStartBulletPattern();
 		List<Pattern> patterns = GameManager.Instance.GetBulletPattern();
@@ -39,5 +43,9 @@ public class RoomManager : MonoBehaviour {
 
 		boss.Initialize(startPattern, patterns, darkAbility);
 		Character.Instance.ChangePosition(startingPosition);
+	}
+
+	public void StopBug() {
+		bug.SetActive(false);
 	}
 }
