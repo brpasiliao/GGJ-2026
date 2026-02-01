@@ -6,6 +6,11 @@ public class Bullet : MonoBehaviour {
 	[SerializeField] private Collider2D trigger;
 	[SerializeField] private float maxDistance;
 
+	[SerializeField] private Sprite bossBulletSprite;
+	[SerializeField] private Sprite playerBulletSpriteL1;
+	[SerializeField] private Sprite playerBulletSpriteL2;
+	[SerializeField] private Sprite playerBulletSpriteL3;
+
 	private IShootable owner;
 	private Vector3 direction;
 	private float speed;

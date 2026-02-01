@@ -10,6 +10,9 @@ public class Character : MonoBehaviour, IShootable {
 	[SerializeField] private Collider2D interactTrigger;
 	private List<Collider2D> interactableColliders;
 
+	[SerializeField] private Transform weaponPivot;
+	[SerializeField] private Transform weaponTrigger;
+
     [SerializeField] private float speed;
 	private Vector3 facingVector;
 
@@ -27,7 +30,7 @@ public class Character : MonoBehaviour, IShootable {
         instance = this;
 		interactableColliders = new();
 		facingVector = Vector3.down;
-		level = 0;
+		level = 2;
 		bulletCount = 0;
 		health = 1;
 	}
@@ -39,6 +42,7 @@ public class Character : MonoBehaviour, IShootable {
 	private void Update() {
 		HandleMovement();
 		HandleInteract();
+		HandleAiming();
 		HandleShooting();
 		HandleDebug();
 	}
@@ -92,25 +96,23 @@ public class Character : MonoBehaviour, IShootable {
 		interactableColliders.RemoveAll(collider => !colliders.Contains(collider));
 	}
 
+	private void HandleAiming() {
+		float distanceFromCamera = 30f; // how far in front of camera
+		Vector3 mouseScreenPosition = Input.mousePosition;
+		mouseScreenPosition.z = distanceFromCamera;
+		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+
+		Vector3 direction = mouseWorldPosition - transform.position;
+		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+		weaponPivot.rotation = Quaternion.Euler(0, 0, angle - 90f);
+	}
+
 	private void HandleShooting() {
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			if (bulletCount > 0) {
 				ShootBullet();
 			}
 		}
-	}
-
-	private void HandleDebug() {
-		if (Input.GetKeyDown(KeyCode.Alpha1)) {
-			ObtainBullet();
-		}
-		if (Input.GetKeyDown(KeyCode.M)) {
-			interactTrigger.enabled = !interactTrigger.enabled;
-		}
-	}
-
-	public void ObtainBullet() {
-		bulletCount++;
 	}
 
 	public void ShootBullet() {
@@ -128,4 +130,19 @@ public class Character : MonoBehaviour, IShootable {
 		}
 		return true;
 	}
+
+	public void ObtainBullet() {
+		bulletCount++;
+	}
+
+	private void HandleDebug() {
+		if (Input.GetKeyDown(KeyCode.Alpha1)) {
+			ObtainBullet();
+		}
+		if (Input.GetKeyDown(KeyCode.M)) {
+			interactTrigger.enabled = !interactTrigger.enabled;
+		}
+	}
+
+	
 }

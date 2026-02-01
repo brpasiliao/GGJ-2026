@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5803922, g: 0.6605555, b: 1, a: 1}
+  m_Sprite: {fileID: 2617341601563610583, guid: fe33d13d89ee24a0ea44175ac670d06f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4777060549124792720}
   - component: {fileID: 3969591112624548478}
-  - component: {fileID: 3167980366303397217}
+  - component: {fileID: 4928458004711441663}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -133,8 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf68bdb344a3d478d9a4aa19f9eaf19a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &3167980366303397217
-CircleCollider2D:
+  fear: 0
+--- !u!61 &4928458004711441663
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -163,9 +164,19 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.67, y: 2.28}
+  m_EdgeRadius: 0
