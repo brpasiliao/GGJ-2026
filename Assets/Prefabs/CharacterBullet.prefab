@@ -9,11 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8657426694301001492}
-  - component: {fileID: 7417545066833479737}
+  - component: {fileID: 229256719841598847}
   - component: {fileID: 507289610257930372}
   - component: {fileID: 8007458805199924393}
+  - component: {fileID: 8203076536924132309}
+  - component: {fileID: 1202842378832053372}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: CharacterBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +36,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7417545066833479737
+--- !u!114 &229256719841598847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,11 +45,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5509739230209880781}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cd4bda7bf914463e964bb2e916a300c, type: 3}
+  m_Script: {fileID: 11500000, guid: 70377c1f8cb024aaaba94f048bd09391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: {fileID: 8007458805199924393}
-  maxDistance: 10
+  maxDistance: 20
+  triggerL1: {fileID: 8007458805199924393}
+  triggerL2: {fileID: 8203076536924132309}
+  triggerL3: {fileID: 1202842378832053372}
+  spriteRenderer: {fileID: 507289610257930372}
+  playerBulletSpriteL1: {fileID: -4941262125025267867, guid: ebc7385469adc425db17b92954c135f7, type: 3}
+  playerBulletSpriteL2: {fileID: 198417393090600563, guid: ebc7385469adc425db17b92954c135f7, type: 3}
+  playerBulletSpriteL3: {fileID: 4036742698557380603, guid: ebc7385469adc425db17b92954c135f7, type: 3}
 --- !u!212 &507289610257930372
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -92,7 +100,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 3332086664408765080, guid: 182d8f1cc904344efbd360df6dd4e50a, type: 3}
+  m_Sprite: {fileID: 4036742698557380603, guid: ebc7385469adc425db17b92954c135f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,7 +118,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5509739230209880781}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -138,4 +146,76 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.1
+  m_Radius: 0.4
+--- !u!58 &8203076536924132309
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5509739230209880781}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.6
+--- !u!58 &1202842378832053372
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5509739230209880781}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.75

@@ -73,16 +73,16 @@ public class Boss : MonoBehaviour, IShootable {
 	}
 
 	private void Update() {
-		//if (Input.GetKeyDown(KeyCode.Alpha8)) {
-		//	health = 1;
-		//	Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
-		//	patternSequence = StartCoroutine(routine(testPatterns));
-		//}
-		//if (Input.GetKeyDown(KeyCode.Alpha9)) {
-		//	health = 1;
-		//	Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
-		//	patternSequence = StartCoroutine(routine(patterns));
-		//}
+		if (Input.GetKeyDown(KeyCode.Alpha8)) {
+			health = 1;
+			Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
+			patternSequence = StartCoroutine(routine(testPatterns));
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha9)) {
+			health = 1;
+			Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
+			patternSequence = StartCoroutine(routine(patterns));
+		}
 		if (Input.GetKeyDown(KeyCode.Alpha0)) {
 			health = 0;
 		}
@@ -145,12 +145,7 @@ public class Boss : MonoBehaviour, IShootable {
 				}
 
 				float angleDegrees = 360f / currentPattern.bulletCount * count;
-				float angleRadians = angleDegrees * Mathf.Deg2Rad;
-				Vector3 direction = new Vector3(Mathf.Cos(angleRadians), Mathf.Sin(angleRadians));
-
-				GameObject bulletObject = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-				Bullet bullet = bulletObject.GetComponent<Bullet>();
-				bullet.Initialize(direction, currentPattern.bulletSpeed, this);
+				FireBullet(angleDegrees);
 			}
 			yield return new WaitForSeconds(currentPattern.delay);
 		}
@@ -160,12 +155,7 @@ public class Boss : MonoBehaviour, IShootable {
 		for (int round = 0; round < currentPattern.rounds; round++) {
 			for (int count = 0; count < currentPattern.bulletCount; count++) {
 				float angleDegrees = 360f / currentPattern.bulletCount * count;
-				float angleRadians = angleDegrees * Mathf.Deg2Rad;
-				Vector3 direction = new Vector3(Mathf.Cos(angleRadians), Mathf.Sin(angleRadians)).normalized;
-
-				GameObject bulletObject = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-				Bullet bullet = bulletObject.GetComponent<Bullet>();
-				bullet.Initialize(direction, currentPattern.bulletSpeed, this);
+				FireBullet(angleDegrees);
 
 				yield return new WaitForSeconds(currentPattern.delay);
 			}
@@ -194,12 +184,7 @@ public class Boss : MonoBehaviour, IShootable {
 				}
 				if (skip) { continue; }
 
-				float angleRadians = angleDegrees * Mathf.Deg2Rad;
-				Vector3 direction = new Vector3(Mathf.Cos(angleRadians), Mathf.Sin(angleRadians));
-
-				GameObject bulletObject = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-				Bullet bullet = bulletObject.GetComponent<Bullet>();
-				bullet.Initialize(direction, currentPattern.bulletSpeed, this);
+				FireBullet(angleDegrees);
 			}
 			yield return new WaitForSeconds(currentPattern.delay);
 		}
@@ -217,12 +202,7 @@ public class Boss : MonoBehaviour, IShootable {
 					continue;
 				}
 
-				float angleRadians = angleDegrees * Mathf.Deg2Rad;
-				Vector3 direction = new Vector3(Mathf.Cos(angleRadians), Mathf.Sin(angleRadians)).normalized;
-
-				GameObject bulletObject = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-				Bullet bullet = bulletObject.GetComponent<Bullet>();
-				bullet.Initialize(direction, currentPattern.bulletSpeed, this);
+				FireBullet(angleDegrees);
 			}
 			yield return new WaitForSeconds(currentPattern.delay);
 		}
@@ -231,15 +211,19 @@ public class Boss : MonoBehaviour, IShootable {
 	private IEnumerator RandomPattern() {
 		for (int count = 0; count < currentPattern.bulletCount; count++) {
 			float angleDegrees = Random.Range(0, 360f);
-			float angleRadians = angleDegrees * Mathf.Deg2Rad;
-			Vector3 direction = new Vector3(Mathf.Cos(angleRadians), Mathf.Sin(angleRadians)).normalized;
-
-			GameObject bulletObject = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-			Bullet bullet = bulletObject.GetComponent<Bullet>();
-			bullet.Initialize(direction, currentPattern.bulletSpeed, this);
+			FireBullet(angleDegrees);
 
 			yield return new WaitForSeconds(currentPattern.delay);
 		}
+	}
+
+	private void FireBullet(float angleDegrees) {
+		float angleRadians = angleDegrees * Mathf.Deg2Rad;
+		Vector3 direction = new Vector3(Mathf.Cos(angleRadians), Mathf.Sin(angleRadians)).normalized;
+
+		GameObject bulletObject = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+		BossBullet bullet = bulletObject.GetComponent<BossBullet>();
+		bullet.Initialize(direction, currentPattern.bulletSpeed);
 	}
 
 	private Func<IEnumerator> GetRoutineFromEnum(PatternType type) {

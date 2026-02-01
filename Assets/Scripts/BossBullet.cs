@@ -1,26 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
+public class BossBullet : MonoBehaviour, IShootable {
 
 	[SerializeField] private Collider2D trigger;
 	[SerializeField] private float maxDistance;
 
-	[SerializeField] private Sprite bossBulletSprite;
-	[SerializeField] private Sprite playerBulletSpriteL1;
-	[SerializeField] private Sprite playerBulletSpriteL2;
-	[SerializeField] private Sprite playerBulletSpriteL3;
-
-	private IShootable owner;
 	private Vector3 direction;
 	private float speed;
 	private float distanceTraveled;
 
 
-	public void Initialize(Vector3 direction, float speed, IShootable owner) {
+	public void Initialize(Vector3 direction, float speed) {
 		this.direction = direction;
 		this.speed = speed;
-		this.owner = owner;
 		distanceTraveled = 0;
 	}
 
@@ -38,11 +31,19 @@ public class Bullet : MonoBehaviour {
 		List<Collider2D> colliders = new();
 		trigger.Overlap(colliders);
 		foreach (Collider2D collider in colliders) {
-			if (collider.TryGetComponent(out IShootable shootable) && shootable != owner) {
-				if (shootable.GetShot()) {
-					Destroy(gameObject);
+			if (collider.TryGetComponent(out IShootable shootable)) {
+				Component component = shootable as Component;
+				if (component.GetType() != GetType() && component.GetType() != typeof(Boss)) {
+					if (shootable.GetShot()) {
+						Destroy(gameObject);
+					}
 				}
 			}
 		}
+	}
+
+	public bool GetShot() {
+		Destroy(gameObject);
+		return true;
 	}
 }
