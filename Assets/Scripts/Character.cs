@@ -1,12 +1,13 @@
 using UnityEngine;
-using System;
 using System.Collections.Generic;
+using System.Collections;
 
 
 public class Character : MonoBehaviour, IShootable {
     private static Character instance;
     public static Character Instance => instance;
 
+	[SerializeField] private SpriteRenderer characterGraphics;
 	[SerializeField] private Rigidbody2D characterRigidbody;
 	[SerializeField] private Collider2D bodyCollider;
 	[SerializeField] private Collider2D interactTrigger;
@@ -19,6 +20,7 @@ public class Character : MonoBehaviour, IShootable {
 	[SerializeField] private Animator characterAnimator;
 	[SerializeField] private Animator weaponAnimator;
 
+	[SerializeField] private float hitCooldown;
     [SerializeField] private float speed;
 	private Vector2 directionVector;
 
@@ -29,6 +31,8 @@ public class Character : MonoBehaviour, IShootable {
 	[SerializeField] private int bulletSpeed;
 	private int bulletCount;
 	private int health;
+	private bool invincible;
+	private bool lost;
 
 
 	private void Awake() {
@@ -37,7 +41,9 @@ public class Character : MonoBehaviour, IShootable {
 		interactableColliders = new();
 		level = 0;
 		UpdateBulletCount(0);
-		health = 1;
+		health = 3;
+		invincible = false;
+		lost = false;
 	}
 
 	public void ChangePosition(Vector3 newPosition) {
@@ -57,8 +63,11 @@ public class Character : MonoBehaviour, IShootable {
 	}
 
 	private void HandleMovementInput() {
-		directionVector = Vector2.zero;
+		if (lost) {
+			return;
+		}
 
+		directionVector = Vector2.zero;
 		if (Input.GetKey(KeyCode.W)) {
 			directionVector.y += 1f;
 		}
@@ -72,14 +81,15 @@ public class Character : MonoBehaviour, IShootable {
 			directionVector.x += 1f;
 		}
 
-		//Vector2 normalizedVector = directionVector.normalized;
-		//Vector3 target = normalizedVector + transform.position;
-		//transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
 		characterAnimator.SetInteger("directionX", (int)directionVector.x);
 		characterAnimator.SetInteger("directionY", (int)directionVector.y);
 	}
 
 	private void HandleMovement() {
+		if (lost) {
+			return;
+		}
+
 		Vector2 step = directionVector.normalized * Time.fixedDeltaTime * speed;
 		characterRigidbody.MovePosition(characterRigidbody.position + step);
 	}
@@ -145,12 +155,46 @@ public class Character : MonoBehaviour, IShootable {
 	}
 
 	public bool GetShot() {
-		health--;
+		if (invincible) {
+			return false;
+		}
+
+		UpdateHealth(health - 1);
+		StartCoroutine(HitCooldown());
+		return true;
+	}
+
+	private void UpdateHealth(int health) {
+		this.health = health;
+
+		if (UIManager.Instance != null) {
+			UIManager.Instance.UpdateCharacterHealth(health);
+		}
+
 		if (health <= 0) {
 			Debug.Log("lose");
-			// lose game;
+			lost = true;
+			StartCoroutine(LoseSequence());
 		}
-		return true;
+	}
+
+	private IEnumerator HitCooldown() {
+		invincible = true;
+		characterGraphics.color = Color.grey;
+		yield return new WaitForSeconds(hitCooldown);
+		invincible = false;
+		characterGraphics.color = Color.white;
+	}
+
+	private IEnumerator LoseSequence() {
+		characterAnimator.SetTrigger("lost");
+		yield return new WaitForSeconds(3f);
+		GameManager.Instance.LeaveRoom();
+		lost = false;
+	}
+
+	public void Win() {
+		level++;
 	}
 
 	private void HandleCollecting() {

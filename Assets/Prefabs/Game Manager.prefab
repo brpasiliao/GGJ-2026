@@ -61,7 +61,7 @@ MonoBehaviour:
     angle: 0
     bulletCount: 45
     bulletSpeed: 2
-    delay: 0.5
+    delay: 1
   - type: 4
     rounds: 0
     variations: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
     angle: 0
     bulletCount: 45
     bulletSpeed: 2
-    delay: 0.5
+    delay: 1
   - type: 4
     rounds: 0
     variations: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
     angle: 0
     bulletCount: 45
     bulletSpeed: 2
-    delay: 0.5
+    delay: 1
   - type: 3
     rounds: 5
     variations: 6

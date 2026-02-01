@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e7b95c4faeae46458c5f9d80f86da4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterGraphics: {fileID: 9169897688404271902}
   characterRigidbody: {fileID: 5349160412104267514}
   bodyCollider: {fileID: 429390911052721861}
   interactTrigger: {fileID: 5938483920142867627}
@@ -194,6 +195,7 @@ MonoBehaviour:
   weaponGraphics: {fileID: 86578987743329407}
   characterAnimator: {fileID: 5625184242603311681}
   weaponAnimator: {fileID: 5572214589762338842}
+  hitCooldown: 2
   speed: 6
   bulletPrefab: {fileID: 5509739230209880781, guid: 40802ee141cb64ff9a11bb647b77c34f, type: 3}
   bulletSpeed: 10

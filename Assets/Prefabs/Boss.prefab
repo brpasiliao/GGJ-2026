@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 1543269751382712830}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f3817308d3af94993866dc8cd305cb19, type: 2}
+  m_Controller: {fileID: 9100000, guid: c4d614905f92c4ec4a21aec10af0fd87, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -160,6 +160,7 @@ MonoBehaviour:
   animator: {fileID: 8836581268726559335}
   bulletPrefab: {fileID: 5509739230209880781, guid: 8e8c78766e9124387b3d9dcbd6f2255a, type: 3}
   health: 15
+  hitCooldown: 2
   invincibleDuration: 5
   invincibleCooldown: 10
   startDelay: 5

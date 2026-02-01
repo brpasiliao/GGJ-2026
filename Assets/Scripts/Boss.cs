@@ -34,6 +34,7 @@ public class Boss : MonoBehaviour, IShootable {
     [SerializeField] private GameObject bulletPrefab;
 
 	[SerializeField] private int health;
+	[SerializeField] private float hitCooldown;
 	[SerializeField] private float invincibleDuration;
 	[SerializeField] private float invincibleCooldown;
 	[SerializeField] private float startDelay;
@@ -49,6 +50,7 @@ public class Boss : MonoBehaviour, IShootable {
 	private bool darkAbility;
 	private bool invincible;
 	private bool defeated;
+	private int originalHealth;
 
 
 	public void Initialize(Pattern startPattern, List<Pattern> patterns, bool darkAbility, RuntimeAnimatorController controller) {
@@ -60,6 +62,7 @@ public class Boss : MonoBehaviour, IShootable {
 		darkAbilityRoutine = null;
 		invincible = false;
 		defeated = false;
+		originalHealth = health;
 
 		animator.runtimeAnimatorController = controller;
 		Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
@@ -82,8 +85,16 @@ public class Boss : MonoBehaviour, IShootable {
 			}
 
 			RoomManager.Instance.StopBug();
-			graphics.gameObject.SetActive(false);
+			Character.Instance.Win();
+			StartCoroutine(DefeatSequence());
+			//graphics.gameObject.SetActive(false);
 		}
+	}
+
+	private IEnumerator DefeatSequence() {
+		//animator.SetTrigger("defeated");
+		yield return new WaitForSeconds(3f);
+		GameManager.Instance.LeaveRoom();
 	}
 
 	public bool GetShot() {
@@ -91,25 +102,40 @@ public class Boss : MonoBehaviour, IShootable {
 			return false;
 		}
 
-		health--;
-		CheckDefeat();
+		UpdateHealth(health - 1);
+		StartCoroutine(HitCooldown());
 		return true;
+	}
+
+	private void UpdateHealth(int health) {
+		this.health = health;
+		CheckDefeat();
+		if (UIManager.Instance != null) {
+			UIManager.Instance.UpdateBossHealthBar((float)health / originalHealth);
+		}
+	}
+
+	private IEnumerator HitCooldown() {
+		invincible = true;
+		graphics.color = Color.grey;
+		yield return new WaitForSeconds(hitCooldown);
+		invincible = false;
+		graphics.color = Color.white;
 	}
 
 	private void Update() {
 		if (Input.GetKeyDown(KeyCode.Alpha7)) {
-			health = 1;
+			UpdateHealth(1);
 			Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
 			patternSequence = StartCoroutine(routine(testPatterns));
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha8)) {
-			health = 1;
+			UpdateHealth(1);
 			Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
 			patternSequence = StartCoroutine(routine(patterns));
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha9)) {
-			health = 0;
-			CheckDefeat();
+			UpdateHealth(0);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha0)) {
 			GameManager.Instance.LeaveRoom();

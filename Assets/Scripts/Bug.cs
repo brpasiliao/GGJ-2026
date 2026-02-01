@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class Bug : MonoBehaviour {
 
+	[SerializeField] private Collider2D trigger;
 	[SerializeField] private float startDelay;
 	[SerializeField] private float recordTime;
 
@@ -44,6 +45,17 @@ public class Bug : MonoBehaviour {
 			float distance = Vector3.Distance(transform.position, characterOriginalPosition);
 			if (distance < 0.05) {
 				following = true;
+			}
+		}
+
+		List<Collider2D> colliders = new();
+		trigger.Overlap(colliders);
+		foreach (Collider2D collider in colliders) {
+			if (collider.TryGetComponent(out IShootable shootable)) {
+				Component component = shootable as Component;
+				if (component.GetType() == typeof(Character)) {
+					shootable.GetShot();
+				}
 			}
 		}
 	}
