@@ -15,6 +15,9 @@ public class Character : MonoBehaviour, IShootable {
 	[SerializeField] private Collider2D weaponTrigger;
 	[SerializeField] private SpriteRenderer weaponGraphics;
 
+	[SerializeField] private Animator characterAnimator;
+	[SerializeField] private Animator weaponAnimator;
+
     [SerializeField] private float speed;
 	private Vector3 facingAngle;
 
@@ -69,6 +72,8 @@ public class Character : MonoBehaviour, IShootable {
 		Vector3 target = normalizedVector + transform.position;
 		transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
 		facingAngle = normalizedVector == Vector3.zero ? facingAngle : normalizedVector;
+		characterAnimator.SetInteger("directionX", (int) currentVector.x);
+		characterAnimator.SetInteger("directionY", (int) currentVector.y);
 	}
 
 	private void HandleInteract() {
@@ -127,9 +132,9 @@ public class Character : MonoBehaviour, IShootable {
 		GameObject bulletObject = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 		CharacterBullet bullet = bulletObject.GetComponent<CharacterBullet>();
 		bullet.Initialize(direction, bulletSpeed, bulletCount);
+		weaponAnimator.SetTrigger("shoot");
 		UpdateBulletCount(0);
 	}
-	// CHANGE FACING ANGLE TO BE FROM MOUSE INPUT
 
 	public bool GetShot() {
 		health--;
@@ -164,14 +169,15 @@ public class Character : MonoBehaviour, IShootable {
 	private void UpdateBulletCount(int count) {
 		Debug.Log("bullet count " + bulletCount);
 		bulletCount = count;
+		weaponAnimator.SetInteger("level", bulletCount);
 
-		if (bulletCount == 3) {
-			Color color = weaponGraphics.color;
-			color.a = 0.2f;
-			weaponGraphics.color = color;
-		} else {
-			weaponGraphics.color = Color.white;
-		}
+		//if (bulletCount == 3) {
+		//	Color color = weaponGraphics.color;
+		//	color.a = 0.2f;
+		//	weaponGraphics.color = color;
+		//} else {
+		//	weaponGraphics.color = Color.white;
+		//}
 	}
 
 	private void HandleDebug() {
