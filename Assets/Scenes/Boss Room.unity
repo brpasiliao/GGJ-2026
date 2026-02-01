@@ -2371,6 +2371,9 @@ MonoBehaviour:
   bug: {fileID: 594484860}
   startingPosition: {x: 0, y: -7, z: 0}
   boss: {fileID: 1515132523294800908}
+  bugController: {fileID: 9100000, guid: 0f8ae1c445d1b47fd9721657d1b04e08, type: 2}
+  darkController: {fileID: 9100000, guid: f3817308d3af94993866dc8cd305cb19, type: 2}
+  spaceController: {fileID: 9100000, guid: c4d614905f92c4ec4a21aec10af0fd87, type: 2}
 --- !u!4 &212539337
 Transform:
   m_ObjectHideFlags: 0
@@ -2448,7 +2451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &594484861
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4556,6 +4559,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 0, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 1, y: 0, z: 0}
     second:
       serializedVersion: 2
@@ -6078,13 +6091,13 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 323
+  - m_RefCount: 324
     m_Data: {fileID: 11400000, guid: 56a412e462f494c17b6ee3b3e72a43d4, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 323
+  - m_RefCount: 324
     m_Data: {fileID: 21300000, guid: a7ca889c8e217426ca3de0b24515a8b3, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 323
+  - m_RefCount: 324
     m_Data:
       e00: 1
       e01: 0
@@ -6103,7 +6116,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 323
+  - m_RefCount: 324
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -6178,24 +6191,12 @@ CompositeCollider2D:
         Y: -135000000
       - X: 135000000
         Y: -135000000
-    - - X: 0
-        Y: 0
-      - X: 0
-        Y: 15000000
-      - X: 15000000
-        Y: 15000000
-      - X: 15000000
-        Y: 0
   m_CompositePaths:
     m_Paths:
     - - {x: 13.499971, y: -13.5}
       - {x: 13.499971, y: 13.5}
       - {x: -13.5, y: 13.499971}
       - {x: -13.499971, y: -13.5}
-    - - {x: 1.5, y: 0.0000294}
-      - {x: 0, y: 0.0000294}
-      - {x: 0.0000294, y: 1.5}
-      - {x: 1.5, y: 1.4999707}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0

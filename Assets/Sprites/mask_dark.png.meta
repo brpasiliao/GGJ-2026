@@ -140,10 +140,10 @@ TextureImporter:
       name: mask_dark_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 50
-        width: 161
-        height: 157
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: mask_dark_1
       rect:
         serializedVersion: 2
-        x: 287
-        y: 54
-        width: 153
-        height: 158
+        x: 256
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: mask_dark_2
       rect:
         serializedVersion: 2
-        x: 555
-        y: 65
-        width: 105
-        height: 164
+        x: 512
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,10 +206,10 @@ TextureImporter:
       name: mask_dark_3
       rect:
         serializedVersion: 2
-        x: 804
-        y: 80
-        width: 132
-        height: 166
+        x: 768
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,10 +228,10 @@ TextureImporter:
       name: mask_dark_4
       rect:
         serializedVersion: 2
-        x: 1065
-        y: 83
-        width: 161
-        height: 162
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,10 +250,10 @@ TextureImporter:
       name: mask_dark_5
       rect:
         serializedVersion: 2
-        x: 1368
-        y: 78
-        width: 136
-        height: 145
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -272,10 +272,10 @@ TextureImporter:
       name: mask_dark_6
       rect:
         serializedVersion: 2
-        x: 1644
-        y: 64
-        width: 110
-        height: 151
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -294,10 +294,10 @@ TextureImporter:
       name: mask_dark_7
       rect:
         serializedVersion: 2
-        x: 1864
-        y: 51
-        width: 156
-        height: 157
+        x: 1792
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,10 +316,10 @@ TextureImporter:
       name: mask_dark_8
       rect:
         serializedVersion: 2
-        x: 2102
-        y: 83
-        width: 161
-        height: 163
+        x: 2048
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -338,7 +338,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 94898fd6a31d54bf9832ac3d7dbb3395
     internalID: 0
     vertices: []
     indices: 

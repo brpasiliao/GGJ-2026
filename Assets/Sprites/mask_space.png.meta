@@ -140,10 +140,10 @@ TextureImporter:
       name: mask_space_0
       rect:
         serializedVersion: 2
-        x: 64
-        y: 63
-        width: 128
-        height: 141
+        x: 0
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: mask_space_1
       rect:
         serializedVersion: 2
-        x: 320
-        y: 52
-        width: 140
-        height: 162
+        x: 256
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: mask_space_2
       rect:
         serializedVersion: 2
-        x: 608
-        y: 43
-        width: 95
-        height: 168
+        x: 512
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,10 +206,10 @@ TextureImporter:
       name: mask_space_3
       rect:
         serializedVersion: 2
-        x: 831
-        y: 43
-        width: 140
-        height: 161
+        x: 768
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,10 +228,10 @@ TextureImporter:
       name: mask_space_4
       rect:
         serializedVersion: 2
-        x: 1088
-        y: 46
-        width: 128
-        height: 147
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,10 +250,10 @@ TextureImporter:
       name: mask_space_5
       rect:
         serializedVersion: 2
-        x: 1333
-        y: 43
-        width: 140
-        height: 161
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -272,10 +272,10 @@ TextureImporter:
       name: mask_space_6
       rect:
         serializedVersion: 2
-        x: 1601
-        y: 43
-        width: 95
-        height: 168
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -294,10 +294,10 @@ TextureImporter:
       name: mask_space_7
       rect:
         serializedVersion: 2
-        x: 1844
-        y: 52
-        width: 140
-        height: 162
+        x: 1792
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,10 +316,10 @@ TextureImporter:
       name: mask_space_8
       rect:
         serializedVersion: 2
-        x: 2112
-        y: 57
-        width: 128
-        height: 144
+        x: 2048
+        y: 0
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -338,7 +338,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 7fc123deaec1043a68aedd26da497857
     internalID: 0
     vertices: []
     indices: 

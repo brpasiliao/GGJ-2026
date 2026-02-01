@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
+using TMPro;
+using UnityEngine.UIElements;
 
 
 public enum PatternType {
@@ -28,6 +30,7 @@ public struct Pattern {
 
 public class Boss : MonoBehaviour, IShootable {
     [SerializeField] private SpriteRenderer graphics;
+	[SerializeField] private Animator animator;
     [SerializeField] private GameObject bulletPrefab;
 
 	[SerializeField] private int health;
@@ -48,7 +51,7 @@ public class Boss : MonoBehaviour, IShootable {
 	private bool defeated;
 
 
-	public void Initialize(Pattern startPattern, List<Pattern> patterns, bool darkAbility) {
+	public void Initialize(Pattern startPattern, List<Pattern> patterns, bool darkAbility, RuntimeAnimatorController controller) {
 		this.patterns = patterns;
 		this.startPattern = startPattern;
 		this.darkAbility = darkAbility;
@@ -58,6 +61,7 @@ public class Boss : MonoBehaviour, IShootable {
 		invincible = false;
 		defeated = false;
 
+		animator.runtimeAnimatorController = controller;
 		Func<List<Pattern>, IEnumerator> routine = (list) => RunPatterns(list);
 		patternSequence = StartCoroutine(routine(patterns));
 	}
@@ -111,9 +115,13 @@ public class Boss : MonoBehaviour, IShootable {
 			GameManager.Instance.LeaveRoom();
 		}
 
-		if (!defeated) {
-			
-		}
+		Vector2 direction = Character.Instance.transform.position - transform.position;
+		Vector2 discreteDirection = new Vector2(
+			Mathf.Round(direction.x),
+			Mathf.Round(direction.y)
+		);
+		animator.SetInteger("directionX", (int)discreteDirection.x);
+		animator.SetInteger("directionY", (int)discreteDirection.y);
 	}
 
 	private IEnumerator DarkAbility() {
