@@ -49,7 +49,6 @@ public class Boss : MonoBehaviour, IShootable {
 	private Coroutine darkAbilityRoutine;
 	private bool darkAbility;
 	private bool invincible;
-	private bool defeated;
 	private int originalHealth;
 
 
@@ -61,7 +60,6 @@ public class Boss : MonoBehaviour, IShootable {
 		patternSequence = null;
 		darkAbilityRoutine = null;
 		invincible = false;
-		defeated = false;
 		originalHealth = health;
 
 		animator.runtimeAnimatorController = controller;
@@ -72,7 +70,6 @@ public class Boss : MonoBehaviour, IShootable {
 	private void CheckDefeat() {
 		if (health <= 0) {
 			Debug.Log("boss defeated");
-			defeated = true;
 
 			if (currentPatternRoutine != null) {
 				StopCoroutine(currentPatternRoutine);
@@ -102,7 +99,7 @@ public class Boss : MonoBehaviour, IShootable {
 			return false;
 		}
 
-		UpdateHealth(health - 1);
+		UpdateHealth(health - 3);
 		StartCoroutine(HitCooldown());
 		return true;
 	}

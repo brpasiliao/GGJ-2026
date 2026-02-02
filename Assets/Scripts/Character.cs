@@ -174,6 +174,7 @@ public class Character : MonoBehaviour, IShootable {
 		if (health <= 0) {
 			Debug.Log("lose");
 			lost = true;
+			UpdateHealth(3);
 			StartCoroutine(LoseSequence());
 		}
 	}
@@ -195,6 +196,7 @@ public class Character : MonoBehaviour, IShootable {
 
 	public void Win() {
 		level++;
+		UpdateHealth(3);
 	}
 
 	private void HandleCollecting() {
